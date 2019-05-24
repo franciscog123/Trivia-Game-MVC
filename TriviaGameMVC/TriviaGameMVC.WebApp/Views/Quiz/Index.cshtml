@@ -1,0 +1,28 @@
+﻿@model IEnumerable<TriviaGameMVC.WebApp.Models.QuizViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>Only logged in user will be able to play a trivia game here.</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Test data goes here
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem=>item.Text)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
