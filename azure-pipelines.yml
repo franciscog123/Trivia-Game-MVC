@@ -16,6 +16,52 @@ variables:
 
 steps:
 
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'TriviaGameMVC-SonarCloud-Connection'
+    organization: 'franciscog123-github'
+    scannerMode: 'MSBuild'
+    projectKey: 'Project2-TriviaGame-MVC'
+    projectName: 'Project2-TriviaGame-MVC'
+
 - script: dotnet build --configuration $(buildConfiguration) $(solutionPath)
   displayName: 'dotnet build $(buildConfiguration) $(solutionPath)'
 
+- script: dotnet test
+    --configuration $(buildConfiguration)
+    /p:CollectCoverage=true
+    /p:CoverletOutputFormat=opencover
+    /p:CoverletOutput='$(Build.ArtifactStagingDirectory)/coverage/'
+    /p:Exclude="[xunit*]*"
+  workingDirectory: $(solutionPath)
+  displayName: 'dotnet test $(buildConfiguration)'
+
+- task: SonarCloudAnalyze@1
+  inputs: {}
+
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
+
+# do this after you've built your app, near the end of your pipeline in most cases
+# for example, you do this before you deploy to an Azure web app on Windows
+- task: DotNetCoreCLI@2
+  inputs:
+    command: publish
+    publishWebProjects: True
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: True
+
+#- task: AzureRmWebAppDeployment@4
+#  inputs:
+#    ConnectionType: 'AzureRM'
+#    azureSubscription: 'Project1Connection'
+#    appType: 'webApp'
+#    WebAppName: '1904-guerrerof-hardwarestore'
+#    packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'
+
+#- task: PublishBuildArtifacts@1
+#  inputs:
+#    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+#    ArtifactName: 'drop'
+#    publishLocation: 'Container'    
