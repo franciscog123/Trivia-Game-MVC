@@ -3,7 +3,7 @@ using Xunit;
 
 namespace TriviaGameMVC.Tests
 {
-    public class UnitTest1
+    public class QuizControllerTest
     {
         [Fact]
         public void Test1()
