@@ -12,8 +12,8 @@ namespace TriviaGameMVC.WebApp.ApiModels
         {
             UserId = viewModel.UserId,
             UserName = viewModel.UserName,
-            Email = viewModel.Email,
-            CompletedQuizzes = viewModel.CompletedQuizzes
+            CompletedQuizzes = viewModel.CompletedQuizzes,
+            Email = viewModel.Email
         };
 
 
@@ -22,9 +22,24 @@ namespace TriviaGameMVC.WebApp.ApiModels
 
             UserId = user.UserId,
             UserName = user.UserName,
-            Email = user.Email,
-            CompletedQuizzes = user.CompletedQuizzes
+            CompletedQuizzes = user.CompletedQuizzes,
+            Email = user.Email
+        };
 
+        public static ScoreBoard Map(ScoreBoardViewModel viewModel) => new ScoreBoard
+        {
+            UserId=viewModel.UserId,
+            UserName=viewModel.UserName,
+            CompletedQuizzes=viewModel.CompletedQuizzes,
+            TotalScore=viewModel.TotalScore
+        };
+
+        public static ScoreBoardViewModel Map(ScoreBoard scoreBoard) => new ScoreBoardViewModel
+        {
+            UserId=scoreBoard.UserId,
+            UserName=scoreBoard.UserName,
+            CompletedQuizzes=scoreBoard.CompletedQuizzes,
+            TotalScore=scoreBoard.TotalScore
         };
     }
 }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -12,48 +11,44 @@ using TriviaGameMVC.WebApp.Models;
 
 namespace TriviaGameMVC.WebApp.Controllers
 {
-    [Authorize]
-    public class UserController : Controller
+    public class ScoreBoardController : Controller
     {
-        private readonly string _usersUrl = "https://localhost:44394/api/user";
+        private readonly string _boardsUrl = "https://localhost:44394/api/user/getscoreboards";
         private readonly HttpClient _httpClient;
-
-        public UserController(HttpClient httpClient)
+        
+        public ScoreBoardController(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }
 
-        // GET: User
+        // GET: ScoreBoard
         public async Task<ActionResult> Index()
         {
 
-            /*var roles = User.Claims.Where(c => c.Type == ClaimTypes.Role)
-                .Select(c => c.Value);*/
-            HttpResponseMessage response = await _httpClient.GetAsync(_usersUrl);
+            HttpResponseMessage response = await _httpClient.GetAsync(_boardsUrl);
             if (!response.IsSuccessStatusCode)
             {
                 return View("Error", new ErrorViewModel());
             }
 
-            //deserialize from JSON
-            IEnumerable<User> users = await response.Content.ReadAsAsync<IEnumerable<User>>();
-            IEnumerable<UserViewModel> model = users.Select(Mapper.Map);
+            IEnumerable<ScoreBoard> boards = await response.Content.ReadAsAsync<IEnumerable<ScoreBoard>>();
+            IEnumerable<ScoreBoardViewModel> model = boards.Select(Mapper.Map);
             return View(model);
         }
 
-        // GET: User/Details/5
+        // GET: ScoreBoard/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: User/Create
+        // GET: ScoreBoard/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: User/Create
+        // POST: ScoreBoard/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -70,13 +65,13 @@ namespace TriviaGameMVC.WebApp.Controllers
             }
         }
 
-        // GET: User/Edit/5
+        // GET: ScoreBoard/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: User/Edit/5
+        // POST: ScoreBoard/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -93,13 +88,13 @@ namespace TriviaGameMVC.WebApp.Controllers
             }
         }
 
-        // GET: User/Delete/5
+        // GET: ScoreBoard/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: User/Delete/5
+        // POST: ScoreBoard/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<TriviaGameMVC.WebApp.Models.ScoreBoardViewModel>
+
+@{
+    ViewData["Title"] = "Leaderboards";
+}
+
+<h1>Leaderboards</h1>
+
+<h5 class="text-center">Do YOU have what it takes to make it to the top!?</h5>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Rank
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompletedQuizzes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalScore)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@{      int rank = 1;
+    @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                <span>@(rank)</span>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompletedQuizzes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalScore)
+            </td>
+        </tr>
+        rank++;
+    }
+    }
+    </tbody>
+</table>
