@@ -41,5 +41,21 @@ namespace TriviaGameMVC.WebApp.ApiModels
             CompletedQuizzes=scoreBoard.CompletedQuizzes,
             TotalScore=scoreBoard.TotalScore
         };
+
+        public static Question Map(QuestionViewModel viewModel) => new Question
+        {
+            QuestionId=viewModel.QuestionId,
+            CategoryId=viewModel.CategoryId,
+            QuestionString=viewModel.QuestionString,
+            Value=viewModel.Value
+        };
+
+        public static QuestionViewModel Map(Question question) => new QuestionViewModel
+        {
+            QuestionId=question.QuestionId,
+            CategoryId=question.CategoryId,
+            QuestionString=question.QuestionString,
+            Value=question.Value
+        };
     }
 }
