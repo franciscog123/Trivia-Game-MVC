@@ -18,6 +18,7 @@ namespace TriviaGameMVC.WebApp.Controllers
     {
         private readonly string _questionsUrl = "https://localhost:44394/api/question";
         private readonly string _categoriesUrl = "https://localhost:44394/api/question/getcategories";
+        private readonly string _lastQuestion = "https://localhost:44394/api/question/getlastquestion";
 
         private readonly HttpClient _httpClient;
 
@@ -97,7 +98,16 @@ namespace TriviaGameMVC.WebApp.Controllers
                     return View(viewModel);
                 }
 
-                return RedirectToAction(nameof(Index));
+                HttpResponseMessage lastQuesResponse = await _httpClient.GetAsync(_lastQuestion);
+
+                if (!lastQuesResponse.IsSuccessStatusCode)
+                {
+                    return View("Error", new ErrorViewModel());
+                }
+                
+                int lastQuestionId= await lastQuesResponse.Content.ReadAsAsync<int>();
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Create", "Choice", new {lastQuesId= lastQuestionId });
             }
             catch
             {
