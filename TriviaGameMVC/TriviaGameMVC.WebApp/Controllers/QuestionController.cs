@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using TriviaGameMVC.WebApp.ApiModels;
 using TriviaGameMVC.WebApp.Models;
 
@@ -16,6 +17,9 @@ namespace TriviaGameMVC.WebApp.Controllers
     public class QuestionController : Controller
     {
         private readonly string _questionsUrl = "https://localhost:44394/api/question";
+        private readonly string _categoriesUrl = "https://localhost:44394/api/question/getcategories";
+        private readonly string _lastQuestion = "https://localhost:44394/api/question/getlastquestion";
+
         private readonly HttpClient _httpClient;
 
         public QuestionController (HttpClient httpClient)
@@ -47,18 +51,23 @@ namespace TriviaGameMVC.WebApp.Controllers
         
         // GET: Question/Create
         [Authorize]
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-            //TODO make this method async, get list of categories from db and display them 
-            //as drop down list in create form
-            /*if (User.IsInRole("Administrator"))
+            if (User.IsInRole("Administrator"))
             {
+                HttpResponseMessage response = await _httpClient.GetAsync(_categoriesUrl);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return View("Error", new ErrorViewModel());
+                }
+
+                IEnumerable<Category> categories = await response.Content.ReadAsAsync<IEnumerable<Category>>();
                 var model = new QuestionViewModel
                 {
-
+                    Categories = categories.ToList()
                 };
                 return View(model);
-            }*/
+            }
             return View();
         }
 
@@ -89,7 +98,16 @@ namespace TriviaGameMVC.WebApp.Controllers
                     return View(viewModel);
                 }
 
-                return RedirectToAction(nameof(Index));
+                HttpResponseMessage lastQuesResponse = await _httpClient.GetAsync(_lastQuestion);
+
+                if (!lastQuesResponse.IsSuccessStatusCode)
+                {
+                    return View("Error", new ErrorViewModel());
+                }
+                
+                int lastQuestionId= await lastQuesResponse.Content.ReadAsAsync<int>();
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Create", "Choice", new {lastQuesId= lastQuestionId });
             }
             catch
             {
