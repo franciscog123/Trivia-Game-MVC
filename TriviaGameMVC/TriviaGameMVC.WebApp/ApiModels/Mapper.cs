@@ -57,5 +57,33 @@ namespace TriviaGameMVC.WebApp.ApiModels
             QuestionString=question.QuestionString,
             Value=question.Value
         };
+
+        public static Category Map(CategoryViewModel viewModel) => new Category
+        {
+            CategoryId = viewModel.CategoryId,
+            CategoryString = viewModel.CategoryString
+        };
+
+        public static CategoryViewModel Map(Category category) => new CategoryViewModel
+        {
+            CategoryId=category.CategoryId,
+            CategoryString=category.CategoryString
+        };
+
+        public static Choice Map(ChoiceViewModel viewModel) => new Choice
+        {
+            ChoiceId = viewModel.ChoiceId,
+            QuestionId = viewModel.QuestionId,
+            Correct = viewModel.Correct,
+            ChoiceString = viewModel.ChoiceString
+        };
+
+        public static ChoiceViewModel Map(Choice choice) => new ChoiceViewModel
+        {
+            ChoiceId = choice.ChoiceId,
+            QuestionId = choice.QuestionId,
+            Correct = choice.Correct,
+            ChoiceString = choice.ChoiceString
+        };
     }
 }
