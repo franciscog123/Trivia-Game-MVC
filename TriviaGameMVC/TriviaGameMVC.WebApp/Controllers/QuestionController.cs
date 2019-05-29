@@ -121,25 +121,50 @@ namespace TriviaGameMVC.WebApp.Controllers
         }
 
         // GET: Question/Delete/5
-        public ActionResult Delete(int id)
+        [Authorize(Roles = "Administrator")]
+        public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            try
+            {
+                if(!ModelState.IsValid)
+                {
+                    return View("Error", new ErrorViewModel());
+                }
+                HttpResponseMessage response = await _httpClient.GetAsync($"{_questionsUrl}/{id}");
+                if(!response.IsSuccessStatusCode)
+                {
+                    return View("Error", new ErrorViewModel());
+                }
+                Question question = await response.Content.ReadAsAsync<Question>();
+
+                QuestionViewModel model = Mapper.Map(question);
+
+                return View(model);
+            }
+            catch(Exception ex)
+            {
+                return View();
+            }
         }
 
         // POST: Question/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        [Authorize(Roles = "Administrator")]
+        public async Task<ActionResult> Delete(int id, IFormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                HttpResponseMessage response = await _httpClient.DeleteAsync($"{_questionsUrl}/{id}");
+                if(!response.IsSuccessStatusCode)
+                {
+                    return View("Error", new ErrorViewModel());
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View("Error", new ErrorViewModel());
             }
         }
     }
