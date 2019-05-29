@@ -57,5 +57,17 @@ namespace TriviaGameMVC.WebApp.ApiModels
             QuestionString=question.QuestionString,
             Value=question.Value
         };
+
+        public static Category Map(CategoryViewModel viewModel) => new Category
+        {
+            CategoryId = viewModel.CategoryId,
+            CategoryString = viewModel.CategoryString
+        };
+
+        public static CategoryViewModel Map(Category category) => new CategoryViewModel
+        {
+            CategoryId=category.CategoryId,
+            CategoryString=category.CategoryString
+        };
     }
 }
