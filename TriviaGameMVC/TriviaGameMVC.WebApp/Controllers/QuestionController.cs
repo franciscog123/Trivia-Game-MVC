@@ -107,7 +107,7 @@ namespace TriviaGameMVC.WebApp.Controllers
                 
                 int lastQuestionId= await lastQuesResponse.Content.ReadAsAsync<int>();
                 //return RedirectToAction(nameof(Index));
-                return RedirectToAction("Create", "Choice", new {lastQuesId= lastQuestionId });
+                return RedirectToAction("Create", "QuestionChoices", new {lastQuesId= lastQuestionId });
             }
             catch
             {

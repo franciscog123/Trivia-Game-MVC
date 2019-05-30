@@ -1,0 +1,44 @@
+﻿@model TriviaGameMVC.WebApp.Models.QuestionChoicesViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>QuestionChoicesViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="QuestionId" class="control-label"></label>
+                <input type="text" asp-for="QuestionId" class="form-control" readonly="readonly" />
+                <span asp-validation-for="QuestionId" class="text-danger"></span>
+            </div>
+            <div>
+                @for (var i = 0; i < 4; i++)
+                {
+                    @Html.TextBoxFor(m => Model.Choices[i].ChoiceString)
+                    <div class="form-group">
+                        <label asp-for="Choices[i].Correct" class="control-label">Correct Answer</label>
+                        <input type="radio" asp-for="Choices[i].Correct" value="false"/>
+                        <span asp-validation-for="Choices[i].Correct" class="text-danger"></span>
+                    </div>
+
+                }
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+

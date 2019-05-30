@@ -82,7 +82,7 @@ namespace TriviaGameMVC.WebApp.ApiModels
         {
             ChoiceId = choice.ChoiceId,
             QuestionId = choice.QuestionId,
-            Correct = choice.Correct,
+            Correct = (bool)choice.Correct,
             ChoiceString = choice.ChoiceString
         };
     }

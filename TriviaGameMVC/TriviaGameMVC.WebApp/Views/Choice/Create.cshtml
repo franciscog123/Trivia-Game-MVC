@@ -8,28 +8,22 @@
 
 <h4>ChoiceViewModel</h4>
 <hr />
-<h2>@Model.QuestionId;</h2>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="ChoiceId" class="control-label"></label>
-                <input asp-for="ChoiceId" class="form-control" />
-                <span asp-validation-for="ChoiceId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="QuestionId" class="control-label"></label>
                 @*@{
-                    object displayMode = (Model.QuestionId) ? null : new { disabled = "disabled" };
-                    @Html.TextBox("CompanyName", "", displayMode)
-                }*@
-                <input asp-for="QuestionId" class="form-control" />
+                        object displayMode = (Model.QuestionId) ? null : new { disabled = "disabled" };
+                        @Html.TextBox("CompanyName", "", displayMode)
+                    }*@
+                <input type="text" asp-for="QuestionId" class="form-control"  readonly="readonly" />
                 <span asp-validation-for="QuestionId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Correct" class="control-label"></label>
-                <input asp-for="Correct" class="form-control" />
+                <input type="checkbox" name="Correct" value="true" checked />
                 <span asp-validation-for="Correct" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -47,4 +41,8 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
 
