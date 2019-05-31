@@ -1,12 +1,10 @@
 ﻿@model TriviaGameMVC.WebApp.Models.QuestionChoicesViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Choices";
 }
 
-<h1>Create</h1>
-
-<h4>QuestionChoicesViewModel</h4>
+<h1>Create Choices</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -17,19 +15,18 @@
                 <input type="text" asp-for="QuestionId" class="form-control" readonly="readonly" />
                 <span asp-validation-for="QuestionId" class="text-danger"></span>
             </div>
-            <div>
+            <p>Input choices below</p>
                 @for (var i = 0; i < 4; i++)
                 {
                     @Html.TextBoxFor(m => Model.Choices[i].ChoiceString)
-                    <div class="form-group">
-                        <label asp-for="Choices[i].Correct" class="control-label">Correct Answer</label>
-                        <input type="radio" asp-for="Choices[i].Correct" value="false"/>
-                        <span asp-validation-for="Choices[i].Correct" class="text-danger"></span>
-                    </div>
-
+                    @:&nbsp
+                    @:&nbsp
+                    @Html.CheckBoxFor(model => model.Choices[i].Correct)
+                    <span>
+                        Mark if correct
+                    </span>
+                    <br>
                 }
-            </div>
-
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -37,8 +34,8 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
 
 
