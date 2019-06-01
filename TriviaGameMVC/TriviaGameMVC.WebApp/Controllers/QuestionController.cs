@@ -16,13 +16,13 @@ namespace TriviaGameMVC.WebApp.Controllers
     [Authorize]
     public class QuestionController : Controller
     {
-        private readonly string _questionsUrl = "https://localhost:44394/api/question";
+        /*private readonly string _questionsUrl = "https://localhost:44394/api/question";
         private readonly string _categoriesUrl = "https://localhost:44394/api/question/getcategories";
-        private readonly string _lastQuestion = "https://localhost:44394/api/question/getlastquestion";
+        private readonly string _lastQuestion = "https://localhost:44394/api/question/getlastquestion";*/
 
-        //private readonly string _questionsUrl = "https://1904-guerrerof-triviagameapi.azurewebsites.net/api/question";
-        //private readonly string _categoriesUrl = "https://1904-guerrerof-triviagameapi.azurewebsites.net/api/question/getcategories";
-        //private readonly string _lastQuestion = "https://1904-guerrerof-triviagameapi.azurewebsites.net/api/question/getlastquestion";
+        private readonly string _questionsUrl = "https://1904-guerrerof-triviagameapi.azurewebsites.net/api/question";
+        private readonly string _categoriesUrl = "https://1904-guerrerof-triviagameapi.azurewebsites.net/api/question/getcategories";
+        private readonly string _lastQuestion = "https://1904-guerrerof-triviagameapi.azurewebsites.net/api/question/getlastquestion";
 
         private readonly HttpClient _httpClient;
 

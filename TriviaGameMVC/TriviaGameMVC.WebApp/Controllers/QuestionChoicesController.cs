@@ -15,8 +15,8 @@ namespace TriviaGameMVC.WebApp.Controllers
     [Authorize]
     public class QuestionChoicesController : Controller
     {
-        //private readonly string _choiceUrl = "https://1904-guerrerof-triviagameapi.azurewebsites.net/api/choice";
-        private readonly string _choiceUrl = "https://localhost:44394/api/choice";
+        private readonly string _choiceUrl = "https://1904-guerrerof-triviagameapi.azurewebsites.net/api/choice";
+        //private readonly string _choiceUrl = "https://localhost:44394/api/choice";
         private readonly HttpClient _httpClient;
 
         public QuestionChoicesController(HttpClient httpClient)
