@@ -161,9 +161,9 @@ namespace TriviaGameMVC.WebApp.Controllers
 
                 QuestionViewModel model = Mapper.Map(question);
 
-                return View(model);
+                return View();
             }
-            catch(Exception ex)
+            catch
             {
                 return View();
             }

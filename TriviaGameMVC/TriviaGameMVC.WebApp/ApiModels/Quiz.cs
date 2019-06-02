@@ -12,7 +12,8 @@ namespace TriviaGameMVC.WebApp.ApiModels
         public int CategoryId { get; set; }
         public int GameModeId { get; set; }
         public int Score { get; set; }
-        public DateTime QuizTime { get; set; }
+        public DateTime QuizTime
+        { get; set; }
         public string CategoryString { get; set; }
         public string GameModeString { get; set; }
 

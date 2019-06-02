@@ -28,9 +28,6 @@ namespace TriviaGameMVC.WebApp.Controllers
         // GET: User
         public async Task<ActionResult> Index()
         {
-
-            /*var roles = User.Claims.Where(c => c.Type == ClaimTypes.Role)
-                .Select(c => c.Value);*/
             HttpResponseMessage response = await _httpClient.GetAsync(_usersUrl);
             if (!response.IsSuccessStatusCode)
             {
