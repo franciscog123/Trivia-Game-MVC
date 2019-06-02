@@ -2,32 +2,18 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
-
 @if (User.Identity.IsAuthenticated)
 {
-    <table>
-        <thead>
-            <tr>
-                <th>Type</th>
-                <th>Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var claim in User.Claims)
-            {
-                <tr>
-                    <td>@claim.Type</td>
-                    <td>@claim.Value</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <h5>You are logged in.</h5>
 }
 else
 {
     <h3>(not logged in)</h3>
 }
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <img class="unsplash-images"  src="https://www.sporcle.com/blog/wp-content/uploads/2018/10/1-48.jpg" alt="Trivia" />
+</div>
+
+

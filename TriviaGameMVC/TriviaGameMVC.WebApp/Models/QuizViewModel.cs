@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Threading.Tasks;
+using TriviaGameMVC.WebApp.ApiModels;
 
 namespace TriviaGameMVC.WebApp.Models
 {

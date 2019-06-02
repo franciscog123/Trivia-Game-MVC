@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Converters;
 using TriviaGameMVC.WebApp.ApiModels;
 using TriviaGameMVC.WebApp.Models;
 
@@ -62,6 +63,8 @@ namespace TriviaGameMVC.WebApp.Controllers
             }
 
             IEnumerable<Quiz> quizzes = await quizzesResponse.Content.ReadAsAsync<IEnumerable<Quiz>>();
+            //IEnumerable<Quiz> quizzes = await quizzesResponse.Content.ReadAsAsync<IEnumerable<Quiz>>(new List<JsonMediaTypeFormatter>() {});
+            //IEnumerable<Quiz> quizzes = await quizzesResponse.Content.ReadAsAsync<IEnumerable<Quiz>>(<new List<MediaTypeFormatter>()>);
             IEnumerable<QuizViewModel> model = quizzes.Select(Mapper.Map);
 
             var modelList = model.ToList();

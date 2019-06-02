@@ -16,9 +16,6 @@
                 @Html.DisplayNameFor(model => model.Score)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.QuizTime)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.CategoryString)
             </th>
             <th>
@@ -37,16 +34,10 @@
                 @Html.DisplayFor(modelItem => item.Score)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.QuizTime)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.CategoryString)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.GameModeString)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
             </td>
         </tr>
 }

@@ -43,9 +43,10 @@
                 @Html.DisplayFor(modelItem => item.Value)
             </td>
             <td>
-                @*Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
-                @Html.ActionLink("Delete", "Delete", new { id=item.QuestionId })
+                @*return RedirectToAction("Index", "QuestionChoices", new { questionId = id });*@
+                @*Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
+                @Html.ActionLink("Details","Index", "QuestionChoices",new {  questionId=item.QuestionId })
+               @* @Html.ActionLink("Delete", "Delete", new { id = item.QuestionId })*@
             </td>
         </tr>
 }

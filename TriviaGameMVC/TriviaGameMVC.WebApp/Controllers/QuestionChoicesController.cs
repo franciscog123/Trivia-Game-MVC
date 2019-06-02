@@ -18,6 +18,7 @@ namespace TriviaGameMVC.WebApp.Controllers
         private readonly string _choiceUrl = "https://1904-guerrerof-triviagameapi.azurewebsites.net/api/choice";
         //private readonly string _choiceUrl = "https://localhost:44394/api/choice";
         private readonly HttpClient _httpClient;
+        private readonly string _questionChoicesUrl = "https://1904-guerrerof-triviagameapi.azurewebsites.net/api/choice/getquestionchoices/";
 
         public QuestionChoicesController(HttpClient httpClient)
         {
@@ -25,9 +26,22 @@ namespace TriviaGameMVC.WebApp.Controllers
         }
 
         // GET: QuestionChoices
-        public ActionResult Index()
+        public async Task<ActionResult> Index(int questionId)
         {
-            return View();
+            var model = new QuestionChoicesViewModel
+            {
+                QuestionId = questionId
+            };
+            HttpResponseMessage response = await _httpClient.GetAsync(_questionChoicesUrl + questionId);
+            if(!response.IsSuccessStatusCode)
+            {
+                return View("Error", new ErrorViewModel());
+            }
+
+            IEnumerable<Choice> choices = await response.Content.ReadAsAsync<IEnumerable<Choice>>();
+            IEnumerable<ChoiceViewModel> choiceModels = choices.Select(Mapper.Map);
+            model.Choices = choiceModels.ToList();
+            return View(model);
         }
 
         // GET: QuestionChoices/Details/5

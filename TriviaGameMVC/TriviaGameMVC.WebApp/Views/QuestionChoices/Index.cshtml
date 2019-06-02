@@ -1,0 +1,38 @@
+﻿@model TriviaGameMVC.WebApp.Models.QuestionChoicesViewModel
+
+@{
+    ViewData["Title"] = "QuestionChoices";
+}
+
+<h1>Question Choices</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Choice Id
+            </th>
+            <th>
+                Choice
+            </th>
+            <th>
+                Correct
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Choices) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChoiceId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem=> item.ChoiceString)
+                </td>
+            <td>
+                @(item.Correct ? "Yes" : "No")
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
