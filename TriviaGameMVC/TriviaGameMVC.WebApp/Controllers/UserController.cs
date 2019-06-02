@@ -15,7 +15,9 @@ namespace TriviaGameMVC.WebApp.Controllers
     [Authorize]
     public class UserController : Controller
     {
-        private readonly string _usersUrl = "https://localhost:44394/api/user";
+        //private readonly string _usersUrl = "https://localhost:44394/api/user";
+        private readonly string _usersUrl = "https://1904-guerrerof-triviagameapi.azurewebsites.net/api/user";
+
         private readonly HttpClient _httpClient;
 
         public UserController(HttpClient httpClient)

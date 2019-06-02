@@ -13,7 +13,9 @@ namespace TriviaGameMVC.WebApp.Controllers
 {
     public class ScoreBoardController : Controller
     {
-        private readonly string _boardsUrl = "https://localhost:44394/api/user/getscoreboards";
+        //private readonly string _boardsUrl = "https://localhost:44394/api/user/getscoreboards";
+        private readonly string _boardsUrl = "https://1904-guerrerof-triviagameapi.azurewebsites.net/api/user/getscoreboards";
+
         private readonly HttpClient _httpClient;
         
         public ScoreBoardController(HttpClient httpClient)
