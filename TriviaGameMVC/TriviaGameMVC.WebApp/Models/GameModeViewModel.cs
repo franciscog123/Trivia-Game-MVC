@@ -7,7 +7,7 @@ namespace TriviaGameMVC.WebApp.Models
 {
     public class GameModeViewModel
     {
-        public int GameModeId;
-        public string GameMode;
+        public int GameModeId { get; set; }
+        public string GameMode { get; set; }
     }
 }

@@ -17,12 +17,8 @@ namespace TriviaGameMVC.WebApp.Controllers
         {
             //delete this later, just testing quizviewmodel
             List<QuizViewModel> list = new List<QuizViewModel>();
-            list.Add(new QuizViewModel { Text="test1"});
-            list.Add(new QuizViewModel { Text = "test2" });
-            list.Add(new QuizViewModel { Text = "test3" });
-            IEnumerable<QuizViewModel> viewModels = list;
-                
-            return View(viewModels);
+   
+            return View();
         }
 
         // GET: Quiz/Details/5

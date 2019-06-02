@@ -1,28 +1,77 @@
 ﻿@model IEnumerable<TriviaGameMVC.WebApp.Models.QuizViewModel>
+
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1>Index</h1>
 
-<p>Only logged in user will be able to play a trivia game here.</p>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                Test data goes here
+                @Html.DisplayNameFor(model => model.QuizId)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GameModeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Score)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuizTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryString)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GameModeString)
+            </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach(var item in Model)
-        {
-            <tr>
-                <td>
-                    @*Html.DisplayFor(modelItem=>item.Text)*@
-                </td>
-            </tr>
-        }
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuizId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GameModeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Score)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuizTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryString)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GameModeString)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
     </tbody>
 </table>
-

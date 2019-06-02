@@ -85,5 +85,29 @@ namespace TriviaGameMVC.WebApp.ApiModels
             Correct = (bool)choice.Correct,
             ChoiceString = choice.ChoiceString
         };
+
+        public static Quiz Map(QuizViewModel viewModel) => new Quiz
+        {
+            QuizId = viewModel.QuizId,
+            UserId = viewModel.UserId,
+            CategoryId = viewModel.CategoryId,
+            GameModeId = viewModel.GameModeId,
+            Score = viewModel.Score,
+            QuizTime = viewModel.QuizTime,
+            CategoryString = viewModel.CategoryString,
+            GameModeString = viewModel.GameModeString
+        };
+
+        public static QuizViewModel Map(Quiz quiz) => new QuizViewModel
+        {
+            QuizId=quiz.QuizId,
+            UserId=quiz.UserId,
+            CategoryId=quiz.CategoryId,
+            GameModeId=quiz.GameModeId,
+            Score=quiz.Score,
+            QuizTime=quiz.QuizTime,
+            CategoryString=quiz.CategoryString,
+            GameModeString=quiz.GameModeString
+        };
     }
 }

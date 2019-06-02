@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TriviaGameMVC.WebApp.Models
+namespace TriviaGameMVC.WebApp.ApiModels
 {
-    public class QuizViewModel
+    public class Quiz
     {
         public int QuizId { get; set; }
         public int UserId { get; set; }
@@ -15,5 +15,6 @@ namespace TriviaGameMVC.WebApp.Models
         public DateTime QuizTime { get; set; }
         public string CategoryString { get; set; }
         public string GameModeString { get; set; }
+
     }
 }

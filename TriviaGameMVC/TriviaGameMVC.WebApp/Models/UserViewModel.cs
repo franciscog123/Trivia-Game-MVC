@@ -15,5 +15,6 @@ namespace TriviaGameMVC.WebApp.Models
         public string Email { get; set; }
 
         public int? CompletedQuizzes { get; set; }
+        public string Role { get; set; }
     }
 }
