@@ -12,7 +12,6 @@ using TriviaGameMVC.WebApp.Models;
 
 namespace TriviaGameMVC.WebApp.Controllers
 {
-    [Authorize]
     public class UserController : Controller
     {
         //private readonly string _usersUrl = "https://localhost:44394/api/user";
@@ -25,6 +24,7 @@ namespace TriviaGameMVC.WebApp.Controllers
             _httpClient = httpClient;
         }
 
+        [Authorize]
         // GET: User
         public async Task<ActionResult> Index()
         {
