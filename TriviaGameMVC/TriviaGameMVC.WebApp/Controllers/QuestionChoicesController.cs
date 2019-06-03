@@ -16,7 +16,6 @@ namespace TriviaGameMVC.WebApp.Controllers
     public class QuestionChoicesController : Controller
     {
         private readonly string _choiceUrl = "https://1904-guerrerof-triviagameapi.azurewebsites.net/api/choice";
-        //private readonly string _choiceUrl = "https://localhost:44394/api/choice";
         private readonly HttpClient _httpClient;
         private readonly string _questionChoicesUrl = "https://1904-guerrerof-triviagameapi.azurewebsites.net/api/choice/getquestionchoices/";
 
@@ -42,12 +41,6 @@ namespace TriviaGameMVC.WebApp.Controllers
             IEnumerable<ChoiceViewModel> choiceModels = choices.Select(Mapper.Map);
             model.Choices = choiceModels.ToList();
             return View(model);
-        }
-
-        // GET: QuestionChoices/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
         }
 
         // GET: QuestionChoices/Create
@@ -91,52 +84,6 @@ namespace TriviaGameMVC.WebApp.Controllers
             catch
             {
                 return View(collection);
-            }
-        }
-
-        // GET: QuestionChoices/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: QuestionChoices/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: QuestionChoices/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: QuestionChoices/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
             }
         }
     }

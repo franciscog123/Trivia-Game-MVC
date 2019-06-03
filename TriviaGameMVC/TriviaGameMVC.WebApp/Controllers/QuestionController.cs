@@ -16,10 +16,6 @@ namespace TriviaGameMVC.WebApp.Controllers
     [Authorize]
     public class QuestionController : Controller
     {
-        /*private readonly string _questionsUrl = "https://localhost:44394/api/question";
-        private readonly string _categoriesUrl = "https://localhost:44394/api/question/getcategories";
-        private readonly string _lastQuestion = "https://localhost:44394/api/question/getlastquestion";*/
-
         private readonly string _questionsUrl = "https://1904-guerrerof-triviagameapi.azurewebsites.net/api/question";
         private readonly string _categoriesUrl = "https://1904-guerrerof-triviagameapi.azurewebsites.net/api/question/getcategories";
         private readonly string _lastQuestion = "https://1904-guerrerof-triviagameapi.azurewebsites.net/api/question/getlastquestion";
@@ -116,29 +112,6 @@ namespace TriviaGameMVC.WebApp.Controllers
             catch
             {
                 return View(viewModel);
-            }
-        }
-
-        // GET: Question/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Question/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
             }
         }
 
