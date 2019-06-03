@@ -7,6 +7,5 @@ namespace TriviaGameMVC.WebApp.Models
 {
     public class PlayGameViewModel
     {
-        string text { get; set; }
     }
 }

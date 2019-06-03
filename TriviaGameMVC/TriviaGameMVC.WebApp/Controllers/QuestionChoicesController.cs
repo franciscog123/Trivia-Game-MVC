@@ -60,7 +60,6 @@ namespace TriviaGameMVC.WebApp.Controllers
         {
             try
             {
-                //var choiceList = new List<ChoiceViewModel>(4);
                 for (var i=0;i<4;i++)
                 {
                     var choice = new Choice
