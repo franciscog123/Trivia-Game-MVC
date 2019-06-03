@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Formatting;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -55,17 +56,40 @@ namespace TriviaGameMVC.WebApp.Controllers
         // POST: User/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(UserViewModel viewModel)
         {
             try
             {
-                // TODO: Add insert logic here
+                if(!ModelState.IsValid)
+                {
+                    return View(viewModel);
+                }
+                var user = new User
+                {
+                    UserName = viewModel.UserName,
+                    Email = viewModel.Email,
+                    CompletedQuizzes = 0
+                };
 
-                return RedirectToAction(nameof(Index));
+                HttpResponseMessage response = await _httpClient.PostAsync(_usersUrl, user, new JsonMediaTypeFormatter());
+
+                if(!response.IsSuccessStatusCode)
+                {
+                    ModelState.TryAddModelError("", "Invalid data");
+                    return View(viewModel);
+                }
+                if(!User.Identity.IsAuthenticated)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    return RedirectToAction(nameof(Index));
+                }
             }
             catch
             {
-                return View();
+                return View(viewModel);
             }
         }
 

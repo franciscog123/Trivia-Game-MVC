@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.SqlTypes;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,9 @@ namespace TriviaGameMVC.WebApp.Models
         public int GameModeId { get; set; }
         public int Score { get; set; }
         public DateTime QuizTime { get; set; }
+        [Display(Name = "Category")]
         public string CategoryString { get; set; }
+        [Display(Name = "GameMode")]
         public string GameModeString { get; set; }
     }
 }

@@ -63,8 +63,6 @@ namespace TriviaGameMVC.WebApp.Controllers
             }
 
             IEnumerable<Quiz> quizzes = await quizzesResponse.Content.ReadAsAsync<IEnumerable<Quiz>>();
-            //IEnumerable<Quiz> quizzes = await quizzesResponse.Content.ReadAsAsync<IEnumerable<Quiz>>(new List<JsonMediaTypeFormatter>() {});
-            //IEnumerable<Quiz> quizzes = await quizzesResponse.Content.ReadAsAsync<IEnumerable<Quiz>>(<new List<MediaTypeFormatter>()>);
             IEnumerable<QuizViewModel> model = quizzes.Select(Mapper.Map);
 
             var modelList = model.ToList();
