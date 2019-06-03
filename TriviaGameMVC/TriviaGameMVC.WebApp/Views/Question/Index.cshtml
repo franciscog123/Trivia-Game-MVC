@@ -16,7 +16,7 @@
                 @Html.DisplayNameFor(model => model.QuestionId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CategoryId)
+                @Html.DisplayNameFor(model => model.CategoryString)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.QuestionString)
@@ -34,7 +34,19 @@
                 @Html.DisplayFor(modelItem => item.QuestionId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CategoryId)
+                @if(item.CategoryId==1){
+                    item.CategoryString = "Movies";
+                }
+                else if (item.CategoryId == 2)
+                {
+                    item.CategoryString = "Food and Drink";
+                }
+                else
+                {
+                    item.CategoryString = "Beer Slogans";
+                }
+                @item.CategoryString
+                @*@Html.DisplayFor(modelItem => item.CategoryId)*@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.QuestionString)

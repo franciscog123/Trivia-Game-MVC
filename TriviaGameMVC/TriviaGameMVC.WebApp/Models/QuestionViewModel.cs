@@ -14,9 +14,12 @@ namespace TriviaGameMVC.WebApp.Models
         [Required]
         public int CategoryId { get; set; }
         [Required]
+        [Display(Name = "Question")]
         public string QuestionString { get; set; }
         [Required]
         public int Value { get; set; }
         public List<Category> Categories { get; set; }
+        [Display(Name = "Category")]
+        public string CategoryString { get; set; }
     }
 }
