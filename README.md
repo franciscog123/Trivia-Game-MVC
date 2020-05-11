@@ -11,4 +11,5 @@ Created with the following technologies:
 - HTML/CSS
 - Azure Active Directory
 - Azure Pipelines (CI/CD)
+- Docker
 
